@@ -14,12 +14,44 @@ namespace Huella
         public Main()
         {
             InitializeComponent();
+
+            try
+            {
+                using (asistenciaEntities contexto = new asistenciaEntities())
+                {
+                    var practicante = contexto.temp_estudiante.First();
+
+                    var data = contexto.estudiante.Where(x => x.id == practicante.estudiante_id).FirstOrDefault();
+                    
+                    if (data == null)
+                    {
+                        
+                    }
+                    else
+                    {
+                        frmRegistrar registrar = new frmRegistrar();
+                        registrar.ShowDialog();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                frmVerificar verificar = new frmVerificar();
+                verificar.ShowDialog();
+                
+            }
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            frmRegistrar registrar = new frmRegistrar();
-            registrar.ShowDialog();
+            frmTest test = new frmTest();
+            test.ShowDialog();
+        }
+
+        private void btnMarcaje_Click(object sender, EventArgs e)
+        {
+            frmVerificar verificar = new frmVerificar();
+            verificar.ShowDialog();
         }
     }
 }

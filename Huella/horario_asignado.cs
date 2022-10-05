@@ -12,27 +12,22 @@ namespace Huella
     using System;
     using System.Collections.Generic;
     
-    public partial class estudiante
+    public partial class horario_asignado
     {
-        public estudiante()
+        public horario_asignado()
         {
-            this.horario_asignado = new HashSet<horario_asignado>();
+            this.registro = new HashSet<registro>();
         }
     
         public int id { get; set; }
-        public string cui { get; set; }
-        public int universidad_id { get; set; }
-        public int area_id { get; set; }
-        public string nombre { get; set; }
-        public string apellido { get; set; }
-        public string carne { get; set; }
-        public string correo { get; set; }
-        public byte[] huella { get; set; }
+        public int estudiante_id { get; set; }
+        public int horario_id { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
         public Nullable<System.DateTime> updated_at { get; set; }
         public Nullable<System.DateTime> deleted_at { get; set; }
-        public Nullable<bool> estado_huella { get; set; }
     
-        public virtual ICollection<horario_asignado> horario_asignado { get; set; }
+        public virtual estudiante estudiante { get; set; }
+        public virtual horario horario { get; set; }
+        public virtual ICollection<registro> registro { get; set; }
     }
 }

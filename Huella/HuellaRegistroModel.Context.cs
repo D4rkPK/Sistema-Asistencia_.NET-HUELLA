@@ -26,6 +26,9 @@ namespace Huella
         }
     
         public DbSet<estudiante> estudiante { get; set; }
+        public DbSet<horario> horario { get; set; }
+        public DbSet<horario_asignado> horario_asignado { get; set; }
+        public DbSet<registro> registro { get; set; }
         public DbSet<temp_estudiante> temp_estudiante { get; set; }
     }
 }

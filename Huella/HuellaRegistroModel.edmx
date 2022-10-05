@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="asistenciaModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="estudiante">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cui" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="universidad_id" Type="int" Nullable="false" />
+          <Property Name="area_id" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="carne" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="huella" Type="varbinary" MaxLength="8000" />
+          <Property Name="created_at" Type="timestamp" Precision="0" />
+          <Property Name="updated_at" Type="timestamp" Precision="0" />
+          <Property Name="deleted_at" Type="timestamp" Precision="0" />
+          <Property Name="estado_huella" Type="bit" />
+        </EntityType>
+        <EntityType Name="horario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" />
+          <Property Name="hora_entrada" Type="time" Precision="0" Nullable="false" />
+          <Property Name="hora_salida" Type="time" Precision="0" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" Precision="0" />
+          <Property Name="updated_at" Type="timestamp" Precision="0" />
+          <Property Name="deleted_at" Type="timestamp" Precision="0" />
+        </EntityType>
+        <EntityType Name="horario_asignado">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estudiante_id" Type="int" Nullable="false" />
+          <Property Name="horario_id" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" Precision="0" />
+          <Property Name="updated_at" Type="timestamp" Precision="0" />
+          <Property Name="deleted_at" Type="timestamp" Precision="0" />
+        </EntityType>
+        <EntityType Name="registro">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="horario_asignado_id" Type="int" Nullable="false" />
+          <Property Name="entrada" Type="time" Precision="0" />
+          <Property Name="salida" Type="time" Precision="0" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="estado" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" Precision="0" />
+          <Property Name="updated_at" Type="timestamp" Precision="0" />
+          <Property Name="deleted_at" Type="timestamp" Precision="0" />
+          <Property Name="comentario" Type="varchar" MaxLength="500" />
+          <Property Name="estado_comentario" Type="int" />
+          <Property Name="tipo_registro" Type="int" />
+        </EntityType>
+        <EntityType Name="temp_estudiante">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estudiante_id" Type="int" />
+          <Property Name="updated_at" Type="timestamp" Precision="0" />
+          <Property Name="created_at" Type="timestamp" Precision="0" />
+          <Property Name="deleted_at" Type="timestamp" Precision="0" />
+        </EntityType>
+        <Association Name="FK_6">
+          <End Role="estudiante" Type="Self.estudiante" Multiplicity="1" />
+          <End Role="horario_asignado" Type="Self.horario_asignado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estudiante">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="horario_asignado">
+              <PropertyRef Name="estudiante_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_7">
+          <End Role="horario" Type="Self.horario" Multiplicity="1" />
+          <End Role="horario_asignado" Type="Self.horario_asignado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="horario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="horario_asignado">
+              <PropertyRef Name="horario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_8">
+          <End Role="horario_asignado" Type="Self.horario_asignado" Multiplicity="1" />
+          <End Role="registro" Type="Self.registro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="horario_asignado">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="registro">
+              <PropertyRef Name="horario_asignado_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="asistenciaModelStoreContainer">
+          <EntitySet Name="estudiante" EntityType="Self.estudiante" Schema="asistencia" store:Type="Tables" />
+          <EntitySet Name="horario" EntityType="Self.horario" Schema="asistencia" store:Type="Tables" />
+          <EntitySet Name="horario_asignado" EntityType="Self.horario_asignado" Schema="asistencia" store:Type="Tables" />
+          <EntitySet Name="registro" EntityType="Self.registro" Schema="asistencia" store:Type="Tables" />
+          <EntitySet Name="temp_estudiante" EntityType="Self.temp_estudiante" Schema="asistencia" store:Type="Tables" />
+          <AssociationSet Name="FK_6" Association="Self.FK_6">
+            <End Role="estudiante" EntitySet="estudiante" />
+            <End Role="horario_asignado" EntitySet="horario_asignado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_7" Association="Self.FK_7">
+            <End Role="horario" EntitySet="horario" />
+            <End Role="horario_asignado" EntitySet="horario_asignado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_8" Association="Self.FK_8">
+            <End Role="horario_asignado" EntitySet="horario_asignado" />
+            <End Role="registro" EntitySet="registro" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="asistenciaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="estudiante">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cui" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="universidad_id" Type="Int32" Nullable="false" />
+          <Property Name="area_id" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="carne" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="huella" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="created_at" Type="DateTime" />
+          <Property Name="updated_at" Type="DateTime" />
+          <Property Name="deleted_at" Type="DateTime" />
+          <Property Name="estado_huella" Type="Boolean" />
+          <NavigationProperty Name="horario_asignado" Relationship="Self.FK_6" FromRole="estudiante" ToRole="horario_asignado" />
+        </EntityType>
+        <EntityType Name="horario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="hora_entrada" Type="Time" Nullable="false" />
+          <Property Name="hora_salida" Type="Time" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" />
+          <Property Name="updated_at" Type="DateTime" />
+          <Property Name="deleted_at" Type="DateTime" />
+          <NavigationProperty Name="horario_asignado" Relationship="Self.FK_7" FromRole="horario" ToRole="horario_asignado" />
+        </EntityType>
+        <EntityType Name="horario_asignado">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estudiante_id" Type="Int32" Nullable="false" />
+          <Property Name="horario_id" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" />
+          <Property Name="updated_at" Type="DateTime" />
+          <Property Name="deleted_at" Type="DateTime" />
+          <NavigationProperty Name="estudiante" Relationship="Self.FK_6" FromRole="horario_asignado" ToRole="estudiante" />
+          <NavigationProperty Name="horario" Relationship="Self.FK_7" FromRole="horario_asignado" ToRole="horario" />
+          <NavigationProperty Name="registro" Relationship="Self.FK_8" FromRole="horario_asignado" ToRole="registro" />
+        </EntityType>
+        <EntityType Name="registro">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="horario_asignado_id" Type="Int32" Nullable="false" />
+          <Property Name="entrada" Type="Time" />
+          <Property Name="salida" Type="Time" />
+          <Property Name="fecha" Type="DateTime" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" />
+          <Property Name="updated_at" Type="DateTime" />
+          <Property Name="deleted_at" Type="DateTime" />
+          <Property Name="comentario" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="estado_comentario" Type="Int32" />
+          <Property Name="tipo_registro" Type="Int32" />
+          <NavigationProperty Name="horario_asignado" Relationship="Self.FK_8" FromRole="registro" ToRole="horario_asignado" />
+        </EntityType>
+        <EntityType Name="temp_estudiante">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estudiante_id" Type="Int32" />
+          <Property Name="updated_at" Type="DateTime" />
+          <Property Name="created_at" Type="DateTime" />
+          <Property Name="deleted_at" Type="DateTime" />
+        </EntityType>
+        <Association Name="FK_6">
+          <End Role="estudiante" Type="Self.estudiante" Multiplicity="1" />
+          <End Role="horario_asignado" Type="Self.horario_asignado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estudiante">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="horario_asignado">
+              <PropertyRef Name="estudiante_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_7">
+          <End Role="horario" Type="Self.horario" Multiplicity="1" />
+          <End Role="horario_asignado" Type="Self.horario_asignado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="horario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="horario_asignado">
+              <PropertyRef Name="horario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_8">
+          <End Role="horario_asignado" Type="Self.horario_asignado" Multiplicity="1" />
+          <End Role="registro" Type="Self.registro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="horario_asignado">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="registro">
+              <PropertyRef Name="horario_asignado_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="asistenciaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="estudiante" EntityType="Self.estudiante" />
+          <EntitySet Name="horario" EntityType="Self.horario" />
+          <EntitySet Name="horario_asignado" EntityType="Self.horario_asignado" />
+          <EntitySet Name="registro" EntityType="Self.registro" />
+          <EntitySet Name="temp_estudiante" EntityType="Self.temp_estudiante" />
+          <AssociationSet Name="FK_6" Association="Self.FK_6">
+            <End Role="estudiante" EntitySet="estudiante" />
+            <End Role="horario_asignado" EntitySet="horario_asignado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_7" Association="Self.FK_7">
+            <End Role="horario" EntitySet="horario" />
+            <End Role="horario_asignado" EntitySet="horario_asignado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_8" Association="Self.FK_8">
+            <End Role="horario_asignado" EntitySet="horario_asignado" />
+            <End Role="registro" EntitySet="registro" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="asistenciaModelStoreContainer" CdmEntityContainer="asistenciaEntities">
+          <EntitySetMapping Name="estudiante">
+            <EntityTypeMapping TypeName="asistenciaModel.estudiante">
+              <MappingFragment StoreEntitySet="estudiante">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cui" ColumnName="cui" />
+                <ScalarProperty Name="universidad_id" ColumnName="universidad_id" />
+                <ScalarProperty Name="area_id" ColumnName="area_id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="carne" ColumnName="carne" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="huella" ColumnName="huella" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
+                <ScalarProperty Name="estado_huella" ColumnName="estado_huella" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="horario">
+            <EntityTypeMapping TypeName="asistenciaModel.horario">
+              <MappingFragment StoreEntitySet="horario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="hora_entrada" ColumnName="hora_entrada" />
+                <ScalarProperty Name="hora_salida" ColumnName="hora_salida" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="horario_asignado">
+            <EntityTypeMapping TypeName="asistenciaModel.horario_asignado">
+              <MappingFragment StoreEntitySet="horario_asignado">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="estudiante_id" ColumnName="estudiante_id" />
+                <ScalarProperty Name="horario_id" ColumnName="horario_id" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="registro">
+            <EntityTypeMapping TypeName="asistenciaModel.registro">
+              <MappingFragment StoreEntitySet="registro">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="horario_asignado_id" ColumnName="horario_asignado_id" />
+                <ScalarProperty Name="entrada" ColumnName="entrada" />
+                <ScalarProperty Name="salida" ColumnName="salida" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
+                <ScalarProperty Name="comentario" ColumnName="comentario" />
+                <ScalarProperty Name="estado_comentario" ColumnName="estado_comentario" />
+                <ScalarProperty Name="tipo_registro" ColumnName="tipo_registro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="temp_estudiante">
+            <EntityTypeMapping TypeName="asistenciaModel.temp_estudiante">
+              <MappingFragment StoreEntitySet="temp_estudiante">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="estudiante_id" ColumnName="estudiante_id" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

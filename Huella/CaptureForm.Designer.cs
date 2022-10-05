@@ -28,40 +28,44 @@ namespace Huella
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.Label PromptLabel;
-            System.Windows.Forms.Label StatusLabel;
+            this.PromptLabel = new System.Windows.Forms.Label();
+            this.StatusLabel = new System.Windows.Forms.Label();
             this.Picture = new System.Windows.Forms.PictureBox();
             this.Prompt = new System.Windows.Forms.TextBox();
             this.StatusText = new System.Windows.Forms.TextBox();
             this.StatusLine = new System.Windows.Forms.Label();
             this.CloseButton = new System.Windows.Forms.Button();
-            PromptLabel = new System.Windows.Forms.Label();
-            StatusLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Picture)).BeginInit();
             this.SuspendLayout();
             // 
             // PromptLabel
             // 
-            PromptLabel.AutoSize = true;
-            PromptLabel.Location = new System.Drawing.Point(266, 12);
-            PromptLabel.Name = "PromptLabel";
-            PromptLabel.Size = new System.Drawing.Size(43, 13);
-            PromptLabel.TabIndex = 1;
-            PromptLabel.Text = "Prompt:";
+            this.PromptLabel.AutoSize = true;
+            this.PromptLabel.BackColor = System.Drawing.Color.White;
+            this.PromptLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PromptLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.PromptLabel.Location = new System.Drawing.Point(272, 12);
+            this.PromptLabel.Name = "PromptLabel";
+            this.PromptLabel.Size = new System.Drawing.Size(61, 16);
+            this.PromptLabel.TabIndex = 1;
+            this.PromptLabel.Text = "Prompt:";
             // 
             // StatusLabel
             // 
-            StatusLabel.AutoSize = true;
-            StatusLabel.Location = new System.Drawing.Point(266, 65);
-            StatusLabel.Name = "StatusLabel";
-            StatusLabel.Size = new System.Drawing.Size(40, 13);
-            StatusLabel.TabIndex = 3;
-            StatusLabel.Text = "Status:";
+            this.StatusLabel.AutoSize = true;
+            this.StatusLabel.BackColor = System.Drawing.Color.White;
+            this.StatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.StatusLabel.Location = new System.Drawing.Point(272, 62);
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Size = new System.Drawing.Size(55, 16);
+            this.StatusLabel.TabIndex = 3;
+            this.StatusLabel.Text = "Status:";
             // 
             // Picture
             // 
-            this.Picture.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.Picture.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.Picture.BackColor = System.Drawing.SystemColors.Window;
             this.Picture.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Picture.Location = new System.Drawing.Point(12, 12);
@@ -72,8 +76,10 @@ namespace Huella
             // 
             // Prompt
             // 
-            this.Prompt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.Prompt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Prompt.BackColor = System.Drawing.Color.White;
+            this.Prompt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Prompt.Location = new System.Drawing.Point(269, 28);
             this.Prompt.Name = "Prompt";
             this.Prompt.ReadOnly = true;
@@ -82,10 +88,11 @@ namespace Huella
             // 
             // StatusText
             // 
-            this.StatusText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.StatusText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.StatusText.BackColor = System.Drawing.SystemColors.Window;
+            this.StatusText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusText.Location = new System.Drawing.Point(269, 81);
             this.StatusText.Multiline = true;
             this.StatusText.Name = "StatusText";
@@ -96,8 +103,11 @@ namespace Huella
             // 
             // StatusLine
             // 
-            this.StatusLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.StatusLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.StatusLine.BackColor = System.Drawing.Color.White;
+            this.StatusLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusLine.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.StatusLine.Location = new System.Drawing.Point(9, 303);
             this.StatusLine.Name = "StatusLine";
             this.StatusLine.Size = new System.Drawing.Size(479, 39);
@@ -107,13 +117,17 @@ namespace Huella
             // CloseButton
             // 
             this.CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CloseButton.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CloseButton.Location = new System.Drawing.Point(494, 319);
+            this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CloseButton.ForeColor = System.Drawing.Color.White;
+            this.CloseButton.Location = new System.Drawing.Point(494, 316);
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(75, 23);
+            this.CloseButton.Size = new System.Drawing.Size(75, 35);
             this.CloseButton.TabIndex = 6;
-            this.CloseButton.Text = "Close";
-            this.CloseButton.UseVisualStyleBackColor = true;
+            this.CloseButton.Text = "CERRAR";
+            this.CloseButton.UseVisualStyleBackColor = false;
             // 
             // CaptureForm
             // 
@@ -125,9 +139,9 @@ namespace Huella
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.StatusLine);
             this.Controls.Add(this.StatusText);
-            this.Controls.Add(StatusLabel);
+            this.Controls.Add(this.StatusLabel);
             this.Controls.Add(this.Prompt);
-            this.Controls.Add(PromptLabel);
+            this.Controls.Add(this.PromptLabel);
             this.Controls.Add(this.Picture);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -136,8 +150,8 @@ namespace Huella
             this.Name = "CaptureForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Capture Enrollment";
-            this.Load += new System.EventHandler(this.CaptureForm_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CaptureForm_FormClosed);
+            this.Load += new System.EventHandler(this.CaptureForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Picture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -151,5 +165,7 @@ namespace Huella
         private System.Windows.Forms.TextBox StatusText;
         private System.Windows.Forms.Label StatusLine;
         private System.Windows.Forms.Button CloseButton;
+        private System.Windows.Forms.Label PromptLabel;
+        private System.Windows.Forms.Label StatusLabel;
     }
 }

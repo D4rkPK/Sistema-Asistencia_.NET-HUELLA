@@ -30,7 +30,6 @@ namespace Huella
             }
             catch (Exception e)
             {
-
                 MessageBox.Show(e.Message);
             }
         }
