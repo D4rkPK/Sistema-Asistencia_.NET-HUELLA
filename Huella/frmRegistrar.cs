@@ -125,7 +125,7 @@ namespace Huella
 
                 using (asistenciaEntities contexto = new asistenciaEntities())
                 {
-                    contexto.Entry(estu).State = System.Data.EntityState.Modified;
+                    contexto.Entry(estu).State = System.Data.Entity.EntityState.Modified;
                     contexto.SaveChanges();
                 }
 
